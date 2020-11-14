@@ -42,7 +42,7 @@ class _LoginState extends State<Login> {
   String validarLogin(String email, String senha) {
     if (email == 'exemplo@email.com') {
       if (senha == '1234') {
-        Navigator.pushNamed(context, "/capacitacao");
+          Navigator.pushNamed(context, '/capacitacao');
         return "Login efetuado com sucesso!";
       } else {
         return "Senha inválida.";
