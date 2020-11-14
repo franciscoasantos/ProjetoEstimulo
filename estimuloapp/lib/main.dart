@@ -2,16 +2,39 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-void main() => runApp(MaterialApp(home: Home()));
+void main() => runApp(
+      MaterialApp(
+        initialRoute: '/login',
+        routes: {
+          '/login': (context) => Login(),
+          '/cadastro': (context) => Cadastro(),
+          '/capacitacao': (context) => Capacitacao(),
+        },
+      ),
+    );
 
-class Home extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
-  Login createState() {
-    return Login();
+  _LoginState createState() {
+    return _LoginState();
   }
 }
 
-class Login extends State<Home> {
+class Cadastro extends StatefulWidget {
+  @override
+  _CadastroState createState() {
+    return _CadastroState();
+  }
+}
+
+class Capacitacao extends StatefulWidget {
+  @override
+  _CapacitacaoState createState() {
+    return _CapacitacaoState();
+  }
+}
+
+class _LoginState extends State<Login> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -19,10 +42,9 @@ class Login extends State<Home> {
   String validarLogin(String email, String senha) {
     if (email == 'exemplo@email.com') {
       if (senha == '1234') {
-        Navigator.push(context, null);
+        Navigator.pushNamed(context, "/capacitacao");
         return "Login efetuado com sucesso!";
-      }
-      else {
+      } else {
         return "Senha inválida.";
       }
     } else {
@@ -138,7 +160,7 @@ class Login extends State<Home> {
   }
 }
 
-class Cadastro extends State<Home> {
+class _CadastroState extends State<Cadastro> {
   final TextEditingController razaoController = TextEditingController();
   final TextEditingController numeroController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
@@ -262,6 +284,51 @@ class Cadastro extends State<Home> {
             ],
           );
         },
+      ),
+    );
+  }
+}
+
+class _CapacitacaoState extends State<Capacitacao> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('Estimulo 2020')),
+      body: Center(child: Text('My Page!')),
+      drawer: Drawer(
+        // Add a ListView to the drawer. This ensures the user can scroll
+        // through the options in the drawer if there isn't enough vertical
+        // space to fit everything.
+        child: ListView(
+          // Important: Remove any padding from the ListView.
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                // Update the state of the app
+                // ...
+                // Then close the drawer
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
