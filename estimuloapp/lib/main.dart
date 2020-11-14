@@ -4,8 +4,8 @@ void main() => runApp(MaterialApp(home: Home()));
 
 class Home extends StatefulWidget {
   @override
-  Login createState() {
-    return Login();
+  Cadastro createState() {
+    return Cadastro();
   }
 }
 
@@ -124,12 +124,12 @@ class Cadastro extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(toolbarHeight: 0),
-      body: Container(
-        margin: const EdgeInsets.only(left: 20.0, right: 20.0),
-        child: ListView(
-          shrinkWrap: true,
-          children: <Widget>[
-            Column(
+      body: ListView(
+        shrinkWrap: true,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 IconButton(
@@ -197,8 +197,8 @@ class Cadastro extends State<Home> {
                 ),
               ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
