@@ -1,14 +1,15 @@
-//123
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 void main() => runApp(
       MaterialApp(
-        initialRoute: '/login',
+        initialRoute: '/capacitacao',
         routes: {
+          //'/': (context) => Inicio(),
           '/login': (context) => Login(),
           '/cadastro': (context) => Cadastro(),
           '/capacitacao': (context) => Capacitacao(),
+          //'/feedback': (context) => Feedback(),
         },
       ),
     );
@@ -20,20 +21,6 @@ class Login extends StatefulWidget {
   }
 }
 
-class Cadastro extends StatefulWidget {
-  @override
-  _CadastroState createState() {
-    return _CadastroState();
-  }
-}
-
-class Capacitacao extends StatefulWidget {
-  @override
-  _CapacitacaoState createState() {
-    return _CapacitacaoState();
-  }
-}
-
 class _LoginState extends State<Login> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
@@ -42,7 +29,7 @@ class _LoginState extends State<Login> {
   String validarLogin(String email, String senha) {
     if (email == 'exemplo@email.com') {
       if (senha == '1234') {
-          Navigator.pushNamed(context, '/capacitacao');
+        Navigator.pushNamed(context, '/capacitacao');
         return "Login efetuado com sucesso!";
       } else {
         return "Senha inválida.";
@@ -157,6 +144,13 @@ class _LoginState extends State<Login> {
         },
       ),
     );
+  }
+}
+
+class Cadastro extends StatefulWidget {
+  @override
+  _CadastroState createState() {
+    return _CadastroState();
   }
 }
 
@@ -289,46 +283,110 @@ class _CadastroState extends State<Cadastro> {
   }
 }
 
-class _CapacitacaoState extends State<Capacitacao> {
+class Capacitacao extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: DefaultTabController(
+        length: 4,
+        child: Scaffold(
+          appBar: AppBar(
+            bottom: TabBar(
+              tabs: [
+                Tab(
+                  icon: Icon(Icons.money),
+                  text: 'Financeiro',
+                ),
+                Tab(
+                  icon: Icon(Icons.business),
+                  text: 'Marketing',
+                ),
+                Tab(
+                  icon: Icon(Icons.computer),
+                  text: 'Tecnologia',
+                ),
+                Tab(
+                  icon: Icon(Icons.people),
+                  text: 'RH',
+                ),
+              ],
+            ),
+            title: Text('Trilhas de capacitação'),
+          ),
+          body: TabBarView(
+            children: [
+              Trilhas('financeiro'),
+              Trilhas('marketing'),
+              Trilhas('tecnologia'),
+              Trilhas('rh'),
+            ],
+          ),
+          drawer: Drawer(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: <Widget>[
+                DrawerHeader(
+                  child: Text(
+                    'Estimulo 2020',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                    ),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.blue,
+                  ),
+                ),
+                ListTile(
+                  title: Text('Trilhas de capacitação'),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/capacitacao');
+                  },
+                ),
+                ListTile(
+                  title: Text('Feedback'),
+                  onTap: () {
+                    Navigator.pushNamed(context, '/feedback');
+                  },
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Trilhas extends StatefulWidget {
+  String _trilha;
+
+  Trilhas(String trilha) {
+    _trilha = trilha;
+  }
+  _TrilhasState createState() => _TrilhasState(_trilha);
+}
+
+class _TrilhasState extends State<Trilhas> {
+  String _trilha;
+
+  _TrilhasState(String trilha) {
+    _trilha = trilha;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Estimulo 2020')),
-      body: Center(child: Text('My Page!')),
-      drawer: Drawer(
-        // Add a ListView to the drawer. This ensures the user can scroll
-        // through the options in the drawer if there isn't enough vertical
-        // space to fit everything.
-        child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Text('Drawer Header'),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
+      body: Column(
+        children: [
+          Text(
+            'Trilhas de conhecimento: ' + _trilha,
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
             ),
-            ListTile(
-              title: Text('Item 1'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: Text('Item 2'),
-              onTap: () {
-                // Update the state of the app
-                // ...
-                // Then close the drawer
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
