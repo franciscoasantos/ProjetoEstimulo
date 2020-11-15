@@ -3,9 +3,9 @@ import 'package:flutter/rendering.dart';
 
 void main() => runApp(
       MaterialApp(
-        initialRoute: '/capacitacao',
+        initialRoute: '/',
         routes: {
-          //'/': (context) => Inicio(),
+          '/': (context) => Inicio(),
           '/login': (context) => Login(),
           '/cadastro': (context) => Cadastro(),
           '/capacitacao': (context) => Capacitacao(),
@@ -13,6 +13,77 @@ void main() => runApp(
         },
       ),
     );
+
+class Inicio extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController senhaController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(toolbarHeight: 0),
+      body: Container(
+        margin: const EdgeInsets.only(left: 20.0, right: 20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              'Seja\nbem-vindo!',
+              style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold),
+            ),
+            SizedBox(height: 20),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Image.asset(
+                  'assets/images/logo.png',
+                  width: 200,
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+            SizedBox(height: 50),
+            Center(
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/login');
+                },
+                child: Text('   Entrar   ',
+                    style: TextStyle(color: Colors.white, fontSize: 20)),
+                color: Colors.blue,
+                padding: EdgeInsets.fromLTRB(100, 20, 100, 20),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10.0)),
+              ),
+            ),
+            Center(
+              child: RaisedButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/cadastro');
+                },
+                child: Text('Criar conta',
+                    style: TextStyle(color: Colors.black, fontSize: 20)),
+                color: Colors.white,
+                padding: EdgeInsets.fromLTRB(100, 20, 100, 20),
+                shape: RoundedRectangleBorder(
+                    side: BorderSide(
+                      color: Colors.grey,
+                      width: 2,
+                    ),
+                    borderRadius: BorderRadius.circular(10.0)),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
 
 class Login extends StatefulWidget {
   @override
@@ -55,12 +126,16 @@ class _LoginState extends State<Login> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      SizedBox(height: 10),
                       IconButton(
                         icon: Icon(Icons.arrow_back),
-                        onPressed: null,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         color: Colors.blue,
                         iconSize: 30,
                       ),
+                      SizedBox(height: 10),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Image.asset(
@@ -69,7 +144,7 @@ class _LoginState extends State<Login> {
                           fit: BoxFit.fill,
                         ),
                       ),
-                      SizedBox(height: 50),
+                      SizedBox(height: 30),
                       Text(
                         'Entrar',
                         style: TextStyle(
@@ -177,9 +252,12 @@ class _CadastroState extends State<Cadastro> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
+                      SizedBox(height: 10),
                       IconButton(
                         icon: Icon(Icons.arrow_back),
-                        onPressed: null,
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         color: Colors.blue,
                         iconSize: 30,
                       ),
