@@ -116,6 +116,8 @@ class _CadastroState extends State<Cadastro> {
                                   content: Text("Efetuando cadastro..."),
                                 ),
                               );
+                              //sleep(Duration(seconds: 5));
+                             // Navigator.pop(context);
                             }
                           },
                           child: Text('Cadastrar',

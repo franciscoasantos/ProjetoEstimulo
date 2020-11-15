@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'video_list.dart';
+
 class Capacitacao extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -32,10 +34,10 @@ class Capacitacao extends StatelessWidget {
           ),
           body: TabBarView(
             children: [
-              Trilhas('financeiro'),
-              Trilhas('marketing'),
-              Trilhas('tecnologia'),
-              Trilhas('rh'),
+              VideoList('financeiro'),
+              VideoList('marketing'),
+              VideoList('tecnologia'),
+              VideoList('rh'),
             ],
           ),
           drawer: Drawer(
@@ -70,40 +72,6 @@ class Capacitacao extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
-  }
-}
-
-class Trilhas extends StatefulWidget {
-  String _trilha;
-
-  Trilhas(String trilha) {
-    _trilha = trilha;
-  }
-  _TrilhasState createState() => _TrilhasState(_trilha);
-}
-
-class _TrilhasState extends State<Trilhas> {
-  String _trilha;
-
-  _TrilhasState(String trilha) {
-    _trilha = trilha;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Column(
-        children: [
-          Text(
-            'Trilhas de conhecimento: ' + _trilha,
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
       ),
     );
   }
