@@ -52,6 +52,10 @@ class _VideoListState extends State<VideoList> {
             )
             .toList();
         break;
+      case 'tecnologia':
+        break;
+      case 'rh':
+        break;
       default:
     }
   }

@@ -5,6 +5,7 @@ import './telas/Inicio.dart';
 import './telas/login.dart';
 import './telas/cadastro.dart';
 import './telas/capacitacao.dart';
+import './telas/feedback.dart';
 
 void main() => runApp(
       MaterialApp(
@@ -14,7 +15,7 @@ void main() => runApp(
           '/login': (context) => Login(),
           '/cadastro': (context) => Cadastro(),
           '/capacitacao': (context) => Capacitacao(),
-          //'/feedback': (context) => Feedback(),
+          '/feedback': (context) => FeedBack(),
         },
       ),
     );
