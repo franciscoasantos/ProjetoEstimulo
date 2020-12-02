@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './drawer.dart';
+
 class FeedBack extends StatefulWidget {
   @override
   _FeedbackState createState() {
@@ -127,37 +129,7 @@ class _FeedbackState extends State<FeedBack> {
           );
         },
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Text(
-                'Estimulo 2020',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                ),
-              ),
-              decoration: BoxDecoration(
-                color: Colors.blue,
-              ),
-            ),
-            ListTile(
-              title: Text('Trilhas de capacitação'),
-              onTap: () {
-                Navigator.pushNamed(context, '/capacitacao');
-              },
-            ),
-            ListTile(
-              title: Text('Feedback'),
-              onTap: () {
-                Navigator.pushNamed(context, '/feedback');
-              },
-            ),
-          ],
-        ),
-      ),
+      drawer: DrawerApp(),
     );
   }
 }

@@ -9,7 +9,7 @@ import './telas/feedback.dart';
 
 void main() => runApp(
       MaterialApp(
-        initialRoute: '/',
+        initialRoute: '/capacitacao',
         routes: {
           '/': (context) => Inicio(),
           '/login': (context) => Login(),
