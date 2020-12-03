@@ -41,6 +41,10 @@ class _VideoListState extends State<VideoList> {
       case 'marketing':
         _controllers = [
           'rrd04VXcd_Q',
+          'R-qvUu9QOFQ',
+          'HZ9ZoggHdQ4',
+          'a6YxQrCo6Dg',
+          '3esg5BXjjPU',
         ]
             .map<YoutubePlayerController>(
               (videoId) => YoutubePlayerController(
@@ -53,8 +57,39 @@ class _VideoListState extends State<VideoList> {
             .toList();
         break;
       case 'tecnologia':
+       _controllers = [
+          '9fNHAD7ZDL4',
+          'w57-Xl5jZ2o',
+          'LSZCkC0k93s',
+          'SCu1ekLecgY',
+          '8QuBUY1dW-M',
+          '7CmCCDEzKJg',
+        ]
+            .map<YoutubePlayerController>(
+              (videoId) => YoutubePlayerController(
+                initialVideoId: videoId,
+                flags: const YoutubePlayerFlags(
+                  autoPlay: false,
+                ),
+              ),
+            )
+            .toList();
         break;
       case 'rh':
+       _controllers = [
+          'waeKEAbDcUI',
+          'h_8m9wlsMn0',
+          'IJZsYHEGmVM',
+        ]
+            .map<YoutubePlayerController>(
+              (videoId) => YoutubePlayerController(
+                initialVideoId: videoId,
+                flags: const YoutubePlayerFlags(
+                  autoPlay: false,
+                ),
+              ),
+            )
+            .toList();
         break;
       default:
     }
