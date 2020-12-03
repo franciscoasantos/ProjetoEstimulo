@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 class Cadastro extends StatefulWidget {
@@ -13,6 +15,34 @@ class _CadastroState extends State<Cadastro> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController senhaController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Tudo certo!'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Seu cadastro foi efetuado com sucesso!'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -111,13 +141,8 @@ class _CadastroState extends State<Cadastro> {
                         child: RaisedButton(
                           onPressed: () {
                             if (_formKey.currentState.validate()) {
-                              Scaffold.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text("Efetuando cadastro..."),
-                                ),
-                              );
-                              //sleep(Duration(seconds: 5));
-                             // Navigator.pop(context);
+                              sleep(Duration(milliseconds: 300));
+                              _showMyDialog();
                             }
                           },
                           child: Text('Cadastrar',
